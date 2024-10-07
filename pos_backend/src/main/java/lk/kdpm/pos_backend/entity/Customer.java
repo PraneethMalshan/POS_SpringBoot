@@ -39,23 +39,23 @@ public class Customer {
     private List<String> contactNumber;
 
     @Column(name = "nic")
-    private double nic;
+    private String nic;
 
     @Column(name = "active_status",columnDefinition = "TINYINT default 0")
-    private boolean activeState;
+    private boolean active;
 
 
     //Alt + Insert gahala no args constructor & all args constructor eka daa ganna puluwan.
     public Customer() {
     }
-    public Customer(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, double nic, boolean activeState) {
+    public Customer(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, String nic, boolean active) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerSalary = customerSalary;
         this.contactNumber = contactNumber;
         this.nic = nic;
-        this.activeState = activeState;
+        this.active = active;
     }
 
     // Getters Setters dhamiimatath Alt + Insert walin kara ganna puluwan.
@@ -81,12 +81,12 @@ public class Customer {
         return contactNumber;
     }
 
-    public double getNic() {
+    public String getNic() {
         return nic;
     }
 
-    public boolean isActiveState() {
-        return activeState;
+    public boolean isActive() {
+        return active;
     }
 
     public void setCustomerId(int customerId) {
@@ -109,12 +109,12 @@ public class Customer {
         this.contactNumber = contactNumber;
     }
 
-    public void setNic(double nic) {
+    public void setNic(String nic) {
         this.nic = nic;
     }
 
-    public void setActiveState(boolean activeState) {
-        this.activeState = activeState;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 //    ToString ekath daa ganna puluwan. toString eken karanne api daapu okkoma data concat karala denawa. meka use karagena data print  kara gannawa wagee deewal kara ganna puluwan.
@@ -128,7 +128,7 @@ public class Customer {
                 ", customerSalary=" + customerSalary +
                 ", contactNumber=" + contactNumber +
                 ", nic=" + nic +
-                ", activeState=" + activeState +
+                ", active=" + active +
                 '}';
     }
 }
