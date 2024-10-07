@@ -41,7 +41,7 @@ public class Customer {
     @Column(name = "nic")
     private double nic;
 
-    @Column(name = "active_status",columnDefinition = "TINYINT default 1")
+    @Column(name = "active_status",columnDefinition = "TINYINT default 0")
     private boolean activeState;
 
 
