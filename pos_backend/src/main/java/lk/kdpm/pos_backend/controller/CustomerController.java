@@ -22,4 +22,3 @@ public class CustomerController {
 //put - update
 //delete - delete
 
-//1. JSON widhiyata ena request ekak kohomadha api spring project eka aethule ape class type ekata bind kara ganne? @RequestBody annotation eken.
