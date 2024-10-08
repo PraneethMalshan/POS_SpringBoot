@@ -11,19 +11,19 @@ public class CustomerDTO {
     private double customerSalary;
     private List<String> contactNumber;
     private double nic;
-    private boolean activeState;
+    private boolean active;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, double nic, boolean activeState) {
+    public CustomerDTO(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, double nic, boolean active) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerSalary = customerSalary;
         this.contactNumber = contactNumber;
         this.nic = nic;
-        this.activeState = activeState;
+        this.active = active;
     }
 
     public int getCustomerId() {
@@ -74,12 +74,12 @@ public class CustomerDTO {
         this.nic = nic;
     }
 
-    public boolean isActiveState() {
-        return activeState;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setActiveState(boolean activeState) {
-        this.activeState = activeState;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class CustomerDTO {
                 ", customerSalary=" + customerSalary +
                 ", contactNumber=" + contactNumber +
                 ", nic=" + nic +
-                ", activeState=" + activeState +
+                ", active=" + active +
                 '}';
     }
 }
