@@ -1,6 +1,7 @@
 package lk.kdpm.pos_backend.controller;
 
 import lk.kdpm.pos_backend.dto.CustomerDTO;
+import lk.kdpm.pos_backend.dto.request.CustomerUpdateDTO;
 import lk.kdpm.pos_backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,14 @@ public class CustomerController {
 
         customerService.saveCustomer(customerDTO);
         return "saved";
+
+    }
+
+    @PutMapping("/update")
+    public String updateCustomer(@RequestBody CustomerUpdateDTO customerUpdateDTO){
+        String message = customerService.updateCustomer(customerUpdateDTO);
+        return message;
+        //        return "updated";
 
     }
 

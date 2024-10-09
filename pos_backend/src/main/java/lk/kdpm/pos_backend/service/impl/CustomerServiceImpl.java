@@ -1,6 +1,7 @@
 package lk.kdpm.pos_backend.service.impl;
 
 import lk.kdpm.pos_backend.dto.CustomerDTO;
+import lk.kdpm.pos_backend.dto.request.CustomerUpdateDTO;
 import lk.kdpm.pos_backend.entity.Customer;
 import lk.kdpm.pos_backend.repo.CustomerRepo;
 import lk.kdpm.pos_backend.service.CustomerService;
@@ -25,5 +26,22 @@ public class CustomerServiceImpl implements CustomerService {
         );
         customerRepo.save(customer);
         return customerDTO.getCustomerName();
+    }
+
+    @Override
+    public String updateCustomer(CustomerUpdateDTO customerUpdateDTO) {
+        if (customerRepo.existsById(customerUpdateDTO.getCustomerId())){
+            Customer customer = customerRepo.getReferenceById(customerUpdateDTO.getCustomerId());
+
+            customer.setCustomerName(customerUpdateDTO.getCustomerName());
+            customer.setCustomerAddress(customerUpdateDTO.getCustomerAddress());
+            customer.setCustomerSalary(customerUpdateDTO.getCustomerSalary());
+
+            customerRepo.save(customer);
+            return  customerUpdateDTO.getCustomerName() + " Updated Successful!";
+
+        }else {
+            throw  new RuntimeException("No data found for that ID");
+        }
     }
 }
