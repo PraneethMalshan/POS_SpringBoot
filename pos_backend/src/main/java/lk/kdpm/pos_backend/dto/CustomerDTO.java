@@ -10,13 +10,13 @@ public class CustomerDTO {
     private String customerAddress;
     private double customerSalary;
     private List<String> contactNumber;
-    private double nic;
+    private String nic;
     private boolean active;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, double nic, boolean active) {
+    public CustomerDTO(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, String nic, boolean active) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -66,11 +66,11 @@ public class CustomerDTO {
         this.contactNumber = contactNumber;
     }
 
-    public double getNic() {
+    public String getNic() {
         return nic;
     }
 
-    public void setNic(double nic) {
+    public void setNic(String nic) {
         this.nic = nic;
     }
 
