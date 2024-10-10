@@ -30,6 +30,20 @@ public class CustomerController {
 
     }
 
+    @GetMapping(
+            path = "/get-by-id",
+            params = "id"
+    )
+    public CustomerDTO getCustomerById(@RequestParam(value = "id") int customerId){
+
+        CustomerDTO customerDTO = customerService.getCustomerById(customerId);
+
+        //        System.out.println("Print Value "+customerId);
+        return customerDTO;
+    }
+
+
+
 }
 
 //post - save
