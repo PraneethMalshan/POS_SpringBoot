@@ -6,6 +6,8 @@ import lk.kdpm.pos_backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController    //Mee annotation eken thamayi meeka controller ekak kiyala define karanne. meyaagen thamayi client server architecture eka naththam REST API hadanna puluwan hakiyaawa labenne mee annotation eken. ee kiyanne meeken thamayi request ekak yawala response ekak ganna puluwan hakiyawa labenne.
 @RequestMapping("api/v1/customer")
 @CrossOrigin
@@ -42,7 +44,14 @@ public class CustomerController {
         return customerDTO;
     }
 
+    @GetMapping(
+            path = "/get-all-customers"
 
+    )
+    public List<CustomerDTO> getAllCustomers(){
+        List<CustomerDTO> allCustomers = customerService.getAllCustomers();
+        return allCustomers;
+    }
 
 }
 
