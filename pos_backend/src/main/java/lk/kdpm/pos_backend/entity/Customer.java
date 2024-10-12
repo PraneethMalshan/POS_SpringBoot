@@ -18,7 +18,7 @@ public class Customer {
 
     @Id //Primary key ekak kiyala pennanna me annotation eka danawa
     @Column(name = "customer_id",length = 45)  //database ekee column ekee hadena name eka custurmize kara ganna puluwan mee annotation eken. saha  validation ekak dennath puluwan.
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int customerId;
 
     @Column(name = "customer_name",length = 100,nullable = false)  //name ekak nathiwa table ekata customer kenek add karanna bh.. meeka nathuwa nm daanna puluwan. ee nisa null karanne nathuwa thiyanna.
