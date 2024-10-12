@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController    //Mee annotation eken thamayi meeka controller ekak kiyala define karanne. meyaagen thamayi client server architecture eka naththam REST API hadanna puluwan hakiyaawa labenne mee annotation eken. ee kiyanne meeken thamayi request ekak yawala response ekak ganna puluwan hakiyawa labenne.
 @RequestMapping("api/v1/customer")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class CustomerController {
 
     @Autowired
