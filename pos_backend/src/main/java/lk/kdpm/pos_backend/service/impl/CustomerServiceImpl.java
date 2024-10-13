@@ -30,7 +30,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepo.save(customer);
         return customerDTO.getCustomerName();
     }
-
     @Override
     public String updateCustomer(CustomerUpdateDTO customerUpdateDTO) {
         if (customerRepo.existsById(customerUpdateDTO.getCustomerId())){
@@ -65,7 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
         }else {
             throw new RuntimeException("No Customer!");
         }
-
     }
 
     @Override
@@ -89,6 +87,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customerDTOList;
     }
-
-
+    @Override
+    public String deleteCustomer(int customerId) {
+        if (customerRepo.existsById(customerId)){
+            customerRepo.deleteById(customerId);
+            return  "Deleted Successfully! "+customerId;
+        }else {
+            throw new RuntimeException("No Customer Found In That Id!");
+        }
+    }
 }

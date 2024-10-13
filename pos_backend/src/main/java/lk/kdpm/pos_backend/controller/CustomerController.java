@@ -53,6 +53,12 @@ public class CustomerController {
         return allCustomers;
     }
 
+    @DeleteMapping(path = "delete-customer/{id}")
+    public String deleteCustomer(@PathVariable(value = "id") int customerId){
+        String delete = customerService.deleteCustomer(customerId);
+        return delete;
+    }
+
 }
 
 //post - save
