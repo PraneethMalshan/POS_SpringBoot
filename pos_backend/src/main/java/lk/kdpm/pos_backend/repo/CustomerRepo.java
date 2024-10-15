@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository   //Repository ekak kiyala pennanna daanawa.
 @EnableJpaRepositories
-public interface CustomerRepo extends JpaRepository<Customer, Integer> {   //wam paththata danne entity ekee name eka. dakunu paththata daanne entity ekee primary key ekee type eka.
+public interface CustomerRepo extends JpaRepository<Customer, Integer> {
+    List<Customer> findAllByActiveEquals(boolean activeState);
 
 }

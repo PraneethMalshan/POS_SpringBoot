@@ -96,4 +96,26 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("No Customer Found In That Id!");
         }
     }
+
+    @Override
+    public List<CustomerDTO> getAllCustomersByActiveState(boolean activeState) {
+        List<Customer> getAllCustomers = customerRepo.findAllByActiveEquals(activeState);
+
+        List<CustomerDTO> customerDTOList = new ArrayList<>();
+
+        for (Customer customer : getAllCustomers){
+            CustomerDTO customerDTO = new CustomerDTO(
+                    customer.getCustomerId(),
+                    customer.getCustomerName(),
+                    customer.getCustomerAddress(),
+                    customer.getCustomerSalary(),
+                    customer.getContactNumber(),
+                    customer.getNic(),
+                    customer.isActive()
+            );
+            customerDTOList.add(customerDTO);
+        }
+
+        return customerDTOList;
+    }
 }
