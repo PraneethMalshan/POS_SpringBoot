@@ -6,6 +6,7 @@ import lk.kdpm.pos_backend.entity.Customer;
 import lk.kdpm.pos_backend.entity.Item;
 import lk.kdpm.pos_backend.repo.ItemRepo;
 import lk.kdpm.pos_backend.service.ItemService;
+import lk.kdpm.pos_backend.util.mappers.ItemMapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepo itemRepo ;
     @Autowired
     private ModelMapper modelMapper ;
+    @Autowired
+    private ItemMapper itemMapper ;
 
     @Override
     public String saveItem(ItemRequestDTO itemRequestDTO) {
@@ -53,6 +56,21 @@ public class ItemServiceImpl implements ItemService {
         List<Item> items = itemRepo.findAllByItemNameEqualsAndActiveStateEquals(itemName,b);
         if (items.size() > 0) {
             List<ItemGetResponseDTO> itemGetResponseDTOS = modelMapper.map(items, new TypeToken<List<ItemGetResponseDTO>>(){}.getType());
+            return itemGetResponseDTOS;
+        }else {
+            throw new RuntimeException("Item is not Active!");
+        }
+
+    }
+
+    @Override
+    public List<ItemGetResponseDTO> getItemByNameAndStatusByMapStruct(String itemName) {
+
+        boolean b = true;
+        List<Item> items = itemRepo.findAllByItemNameEqualsAndActiveStateEquals(itemName,b);
+        if (items.size() > 0) {
+            List<ItemGetResponseDTO> itemGetResponseDTOS = itemMapper.entityListTiDtoList(items);
+//          List<ItemGetResponseDTO> itemGetResponseDTOS = modelMapper.map(items, new TypeToken<List<ItemGetResponseDTO>>(){}.getType());
             return itemGetResponseDTOS;
         }else {
             throw new RuntimeException("Item is not Active!");
