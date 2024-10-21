@@ -3,7 +3,10 @@ package lk.kdpm.pos_backend.controller;
 import lk.kdpm.pos_backend.dto.CustomerDTO;
 import lk.kdpm.pos_backend.dto.request.CustomerUpdateDTO;
 import lk.kdpm.pos_backend.service.CustomerService;
+import lk.kdpm.pos_backend.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,13 +47,25 @@ public class CustomerController {
         return customerDTO;
     }
 
+//    @GetMapping(
+//            path = "/get-all-customers"
+//
+//    )
+//    public List<CustomerDTO> getAllCustomers(){
+//        List<CustomerDTO> allCustomers = customerService.getAllCustomers();
+//        return allCustomers;
+//    }
+
     @GetMapping(
             path = "/get-all-customers"
 
     )
-    public List<CustomerDTO> getAllCustomers(){
+    public ResponseEntity<StandardResponse> getAllCustomers(){
         List<CustomerDTO> allCustomers = customerService.getAllCustomers();
-        return allCustomers;
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200, "Success",allCustomers),
+                HttpStatus.OK
+        );
     }
 
     @DeleteMapping(path = "/delete-customer/{id}")
