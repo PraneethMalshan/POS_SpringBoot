@@ -1,6 +1,7 @@
 package lk.kdpm.pos_backend.controller;
 
 import lk.kdpm.pos_backend.dto.CustomerDTO;
+import lk.kdpm.pos_backend.dto.paginated.PaginatedResponseItemDTO;
 import lk.kdpm.pos_backend.dto.request.ItemRequestDTO;
 import lk.kdpm.pos_backend.dto.response.ItemGetResponseDTO;
 import lk.kdpm.pos_backend.service.ItemService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+//import javax.validation.constraints.Max;
 import java.util.List;
 
 @RestController
@@ -56,5 +58,33 @@ public class ItemController {
         List<ItemGetResponseDTO> itemDTOS = itemService.getItemByNameAndStatusByMapStruct(itemName);
         return itemDTOS;
     }
+
+
+    /*@GetMapping(path = "/get-by-item-by-status", params = "activeStatus")
+    public ResponseEntity<StandardResponse> getItemsByActiveStatus(@RequestParam(value = "activeStatus") boolean activeStatus){
+        List<ItemGetResponseDTO> itemDTOS = itemService.getItemsByActiveStatus(activeStatus);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200, "Success",itemDTOS),
+                HttpStatus.OK
+        );
+    }*/
+
+    @GetMapping(
+            path = "/get-by-item-by-status",
+            params = {"activeStatus","page","size"})
+    public ResponseEntity<StandardResponse> getItemsByActiveStatus(
+            @RequestParam(value = "activeStatus") boolean activeStatus,
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size
+//            @RequestParam(value = "size") @Max(50)int size //meeka danna validation ekak widiyata. New version ekee @Max annotation eka naa. old versions wala thiinawa(javax wala thinawa)
+    ){
+//        List<ItemGetResponseDTO> itemDTOS = itemService.getItemsByActiveStatus(activeStatus);
+        PaginatedResponseItemDTO paginatedResponseItemDTO = itemService.getItemByActiveStatusWithPagination(activeStatus,page,size);
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(200, "Success",paginatedResponseItemDTO),
+                HttpStatus.OK
+        );
+    }
+
 
 }

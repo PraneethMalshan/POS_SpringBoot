@@ -1,5 +1,6 @@
 package lk.kdpm.pos_backend.service;
 
+import lk.kdpm.pos_backend.dto.paginated.PaginatedResponseItemDTO;
 import lk.kdpm.pos_backend.dto.request.ItemRequestDTO;
 import lk.kdpm.pos_backend.dto.response.ItemGetResponseDTO;
 
@@ -11,4 +12,8 @@ public interface ItemService {
     List<ItemGetResponseDTO> getItemByNameAndStatus(String itemName);
 
     List<ItemGetResponseDTO> getItemByNameAndStatusByMapStruct(String itemName);
+
+    List<ItemGetResponseDTO> getItemsByActiveStatus(boolean activeStatus);
+
+    PaginatedResponseItemDTO getItemByActiveStatusWithPagination(boolean activeStatus, int page, int size);
 }
