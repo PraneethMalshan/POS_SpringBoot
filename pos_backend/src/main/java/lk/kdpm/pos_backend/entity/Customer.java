@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity     //Entity ekak kiyala pennanna mee annotation eka daanawa.
 @Table(name = "customer")   //DB Table eke name eka change kara ganna oona nam mee annotation eka use karnna puluwan.
@@ -41,6 +42,9 @@ public class Customer {
 
     @Column(name = "active_status",columnDefinition = "TINYINT default 0")
     private boolean active;
+
+    @OneToMany(mappedBy="customer")
+    private Set<Order> orders;
 
 
     //Alt + Insert gahala no args constructor & all args constructor eka daa ganna puluwan.
