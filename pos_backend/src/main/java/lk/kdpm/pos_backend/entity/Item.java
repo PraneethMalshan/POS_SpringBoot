@@ -4,6 +4,8 @@ import lk.kdpm.pos_backend.entity.enums.measuringUnitType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "item")
 @NoArgsConstructor
@@ -37,4 +39,8 @@ public class Item {
 
     @Column(name = "active_status",columnDefinition = "TINYINT default 0")
     private boolean activeState;
+
+    @OneToMany(mappedBy="items")
+    private Set<OrderDetails> orderDetails ;
+
 }
