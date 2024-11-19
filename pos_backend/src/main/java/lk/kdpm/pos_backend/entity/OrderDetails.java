@@ -18,7 +18,7 @@ public class OrderDetails {
     @Id
     @Column(name = "order_details_id",length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int orderId;
+    private int orderDetailsId;
 
     @Column(name = "item_name",length = 100,nullable = false)
     private String itemName;

@@ -2,6 +2,9 @@ package lk.kdpm.pos_backend.entity;
 
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 
@@ -15,6 +18,9 @@ import java.util.Set;
 //@TypeDefs({
 //        @TypeDef(name= "json", typeClass = JsonType.class)
 //})
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Customer {
 
     @Id //Primary key ekak kiyala pennanna me annotation eka danawa
@@ -43,14 +49,14 @@ public class Customer {
     @Column(name = "active_status",columnDefinition = "TINYINT default 0")
     private boolean active;
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customers")
     private Set<Order> orders;
 
 
     //Alt + Insert gahala no args constructor & all args constructor eka daa ganna puluwan.
-    public Customer() {
-    }
-    public Customer(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, String nic, boolean active) {
+/*    public Customer() {
+    }*/
+    /*public Customer(int customerId, String customerName, String customerAddress, double customerSalary, List<String> contactNumber, String nic, boolean active, Set<Order> orders) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -58,12 +64,13 @@ public class Customer {
         this.contactNumber = contactNumber;
         this.nic = nic;
         this.active = active;
-    }
+        this.orders = orders;
+    }*/
 
     // Getters Setters dhamiimatath Alt + Insert walin kara ganna puluwan.
 
 
-    public int getCustomerId() {
+    /*public int getCustomerId() {
         return customerId;
     }
 
@@ -119,7 +126,13 @@ public class Customer {
         this.active = active;
     }
 
-//    ToString ekath daa ganna puluwan. toString eken karanne api daapu okkoma data concat karala denawa. meka use karagena data print  kara gannawa wagee deewal kara ganna puluwan.
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
     @Override
     public String toString() {
@@ -129,10 +142,15 @@ public class Customer {
                 ", customerAddress='" + customerAddress + '\'' +
                 ", customerSalary=" + customerSalary +
                 ", contactNumber=" + contactNumber +
-                ", nic=" + nic +
+                ", nic='" + nic + '\'' +
                 ", active=" + active +
+                ", orders=" + orders +
                 '}';
-    }
+    }*/
+
+    //    ToString ekath daa ganna puluwan. toString eken karanne api daapu okkoma data concat karala denawa. meka use karagena data print  kara gannawa wagee deewal kara ganna puluwan.
+
+
 }
 
 

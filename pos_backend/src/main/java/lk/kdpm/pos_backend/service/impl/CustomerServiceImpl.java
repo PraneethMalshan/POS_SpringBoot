@@ -6,7 +6,9 @@ import lk.kdpm.pos_backend.entity.Customer;
 import lk.kdpm.pos_backend.exception.NotFoundException;
 import lk.kdpm.pos_backend.repo.CustomerRepo;
 import lk.kdpm.pos_backend.service.CustomerService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +19,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepo customerRepo;
+    @Autowired
+    private ModelMapper modelMapper ;
 
     @Override
     public String saveCustomer(CustomerDTO customerDTO) {
-        Customer customer = new Customer(
+        /*Customer customer = new Customer(
                 customerDTO.getCustomerId(),
                 customerDTO.getCustomerName(),
                 customerDTO.getCustomerAddress(),
@@ -30,7 +34,16 @@ public class CustomerServiceImpl implements CustomerService {
                 customerDTO.isActive()
         );
         customerRepo.save(customer);
-        return customerDTO.getCustomerName();
+        return customerDTO.getCustomerName();*/
+
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        if (!customerRepo.existsById(customer.getCustomerId())){
+            customerRepo.save(customer);
+            return customer.getCustomerId()+ "Saved Successfully!";
+        } else {
+            throw new DuplicateKeyException("Already Added!");
+        }
+
     }
 
     @Override

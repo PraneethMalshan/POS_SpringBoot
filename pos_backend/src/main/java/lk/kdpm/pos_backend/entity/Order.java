@@ -25,7 +25,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name="customer_id", nullable=false)
-    private Customer customer;
+    private Customer customers;
 
     @Column(name = "order_date", columnDefinition = "DATETIME")
     private Date date;
@@ -36,4 +36,9 @@ public class Order {
     @OneToMany(mappedBy="orders")
     private Set<OrderDetails> orderDetails ;
 
+    public Order(Customer customers, Date date, Double total) {
+        this.customers = customers;
+        this.date = date;
+        this.total = total;
+    }
 }

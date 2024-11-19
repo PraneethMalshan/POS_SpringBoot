@@ -19,7 +19,7 @@ import java.util.Set;
 @Data
 public class RequestOrderSaveDTO {
 
-    private int customer;
+    private int customers;
     private Date date;
     private Double total;
     private List<RequestOrderDetailsSaveDTO> orderDetails ;
