@@ -2,7 +2,10 @@ package lk.kdpm.pos_backend.service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.kdpm.pos_backend.dto.CustomerDTO;
+import lk.kdpm.pos_backend.dto.paginated.PaginatedResponseOrderDetailsDTO;
+import lk.kdpm.pos_backend.dto.queryInterface.OrderDetailsInterface;
 import lk.kdpm.pos_backend.dto.request.RequestOrderSaveDTO;
+import lk.kdpm.pos_backend.dto.response.ResponseOrderDetailsDTO;
 import lk.kdpm.pos_backend.entity.Order;
 import lk.kdpm.pos_backend.entity.OrderDetails;
 import lk.kdpm.pos_backend.repo.CustomerRepo;
@@ -13,6 +16,7 @@ import lk.kdpm.pos_backend.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -61,6 +65,14 @@ public class OrderServiceImpl implements OrderService {
             return "Saved!";
         }
 
+        return null;
+    }
+
+    @Override
+    public PaginatedResponseOrderDetailsDTO getAllOrderDetails(boolean status, int page, int size) {
+        List<OrderDetailsInterface> orderDetailsDTOS = orderRepo.getAllOrderDetails(status, PageRequest.of(page,size));
+
+        System.out.println("Come "+orderDetailsDTOS.get(0).getCustomerName());
         return null;
     }
 

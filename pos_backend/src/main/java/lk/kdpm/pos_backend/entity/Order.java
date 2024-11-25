@@ -27,6 +27,9 @@ public class Order {
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customers;
 
+    @Column(name = "active_status",columnDefinition = "TINYINT default 0")
+    private boolean active;
+
     @Column(name = "order_date", columnDefinition = "DATETIME")
     private Date date;
 
