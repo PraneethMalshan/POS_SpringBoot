@@ -72,8 +72,23 @@ public class OrderServiceImpl implements OrderService {
     public PaginatedResponseOrderDetailsDTO getAllOrderDetails(boolean status, int page, int size) {
         List<OrderDetailsInterface> orderDetailsDTOS = orderRepo.getAllOrderDetails(status, PageRequest.of(page,size));
 
-        System.out.println("Come "+orderDetailsDTOS.get(0).getCustomerName());
-        return null;
+//        System.out.println("Come "+orderDetailsDTOS.get(0).getCustomerName());
+        List<ResponseOrderDetailsDTO>list = new ArrayList<>();
+        for (OrderDetailsInterface o: orderDetailsDTOS){
+            ResponseOrderDetailsDTO r = new ResponseOrderDetailsDTO(
+                    o.getCustomerName(),
+                    o.getCustomerAddress(),
+                    o.getContactNumber(),
+                    o.getDate(),
+                    o.getTotal()
+            );
+            list.add(r);
+        }
+        PaginatedResponseOrderDetailsDTO paginatedResponseOrderDetailsDTO  = new PaginatedResponseOrderDetailsDTO(
+            list,
+            orderRepo.countAllOrderDetails(status)
+        );
+        return paginatedResponseOrderDetailsDTO;
     }
 
 
